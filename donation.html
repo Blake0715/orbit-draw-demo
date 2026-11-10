@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>曜时 · 捐款公示</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --text: #f7f6fb;
+      --muted: #a6a3b1;
+      --violet: #b9a1ff;
+      --border: #24222c;
+      --surface: #0c0b0f;
+      --mono: ui-monospace, "SF Mono", Menlo, monospace;
+      font: 16px/1.55 Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+      color: var(--text);
+      background: #000;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body { margin: 0; min-width: 300px; padding-bottom: 85px; }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--violet); outline-offset: 4px; }
+    svg { flex: none; }
+    h1, h2, h3, p { margin: 0; }
+    .wrap { width: min(1080px, calc(100% - 56px)); margin-inline: auto; }
+    .topbar { position: relative; z-index: 1; }
+    .topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 74px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 850; font-size: 19px; letter-spacing: -.035em; }
+    .brand svg { color: var(--violet); }
+    .brand small { display: block; margin-top: -3px; color: var(--muted); font: 8px/1.2 var(--mono); letter-spacing: .19em; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; color: #ded2ff; background: #161024; border: 1px solid #3d2a64; border-radius: 999px; padding: 6px 12px; white-space: nowrap; font-size: 12px; }
+    .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #bc9dff; box-shadow: 0 0 11px #9966ff; }
+    .hero { position: relative; isolation: isolate; padding: 53px 0 34px; }
+    .hero::before {
+      content: ""; position: absolute; z-index: -1; inset: -74px 0 0; pointer-events: none;
+      background:
+        radial-gradient(1px 1px at 16% 25%, #ac97dd 95%, transparent),
+        radial-gradient(1px 1px at 22% 57%, #807399 95%, transparent),
+        radial-gradient(1px 1px at 31% 22%, #8675a3 95%, transparent),
+        radial-gradient(1px 1px at 44% 40%, #b2a4cf 95%, transparent),
+        radial-gradient(1px 1px at 56% 14%, #a68dc8 95%, transparent),
+        radial-gradient(1px 1px at 66% 30%, #9881b5 95%, transparent),
+        radial-gradient(1px 1px at 74% 75%, #8169a7 95%, transparent),
+        radial-gradient(1px 1px at 86% 27%, #b4a3d2 95%, transparent),
+        radial-gradient(1px 1px at 91% 65%, #a38dbb 95%, transparent),
+        radial-gradient(ellipse at 77% 36%, #201336 0%, #0d0917 28%, #000 64%);
+    }
+    .hero-content { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(200px, 1fr); align-items: center; gap: 36px; }
+    .kicker { color: var(--violet); font: 11px/1.5 var(--mono); letter-spacing: .2em; }
+    h1 { margin: 10px 0 12px; font-size: clamp(40px, 7vw, 72px); font-weight: 900; letter-spacing: -.055em; line-height: 1.12; }
+    .description { max-width: 32em; color: #bbb4c9; font-size: clamp(14px, 2vw, 17px); }
+    .hero-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+    .pill { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 43px; padding: 8px 15px; border: 1px solid #473965; border-radius: 999px; background: #120d1d; color: #e9e1fb; font-size: 13px; font-weight: 700; }
+    .pill.primary { background: linear-gradient(115deg, #703ce0, #5753d6); border-color: transparent; color: #fff; box-shadow: 0 5px 24px #7b42f749; }
+    .pill:hover { border-color: #a985f1; }
+    .share { display: grid; place-content: center; justify-items: center; gap: 7px; padding: 22px 20px 26px; min-height: 192px; border: 1px solid #513b75; border-radius: 22px; background: radial-gradient(ellipse at 50% 100%, #362253, #151020 70%); box-shadow: inset 0 1px #ffffff18, 0 15px 45px #0e071e; text-align: center; }
+    .share strong { font-size: clamp(52px, 8vw, 88px); font-weight: 900; line-height: 1; letter-spacing: -.08em; color: #e8dcff; }
+    .share p { color: #d0c1e8; font-size: 13px; }
+    .records { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 18px; }
+    .panel { min-width: 0; padding: 25px; border: 1px solid var(--border); border-radius: 18px; background: var(--surface); }
+    .panel-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+    .panel-title { display: flex; align-items: center; gap: 10px; }
+    .panel-title svg { color: var(--violet); }
+    .panel h2 { font-size: clamp(18px, 3vw, 23px); letter-spacing: -.02em; }
+    .count { flex: none; color: #b9a4e4; font: 11px/1.5 var(--mono); }
+    .empty { padding: 18px; border: 1px dashed #3a3149; border-radius: 13px; background: #120e19; }
+    .empty p:first-child { color: #e8def8; font-size: 15px; font-weight: 700; }
+    .empty p + p { margin-top: 5px; color: var(--muted); font-size: 13px; }
+    .fields { display: flex; flex-wrap: wrap; gap: 6px; margin: 13px 0 0; padding: 0; list-style: none; }
+    .fields li { padding: 3px 8px; border: 1px solid #31293e; border-radius: 6px; color: #b9b0c7; font-size: 11px; }
+    .record + .record { margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border); }
+    .record h3 { font-size: 16px; overflow-wrap: anywhere; }
+    .record dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; margin: 10px 0; font-size: 13px; }
+    .record dt { color: var(--muted); }
+    .record dd { margin: 0; white-space: pre-line; overflow-wrap: anywhere; }
+    .record a { color: #cfbaff; text-decoration: underline; text-underline-offset: 3px; }
+    .photos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+    .photos img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; border: 1px solid var(--border); border-radius: 10px; }
+    .privacy { margin: 16px 0 0; color: var(--muted); font-size: 12px; }
+    .dock { position: fixed; z-index: 5; inset: auto 0 0; border-top: 1px solid #201d27; background: #09080ce8; backdrop-filter: blur(18px); padding: 8px 0 max(8px, env(safe-area-inset-bottom)); }
+    .dock nav { display: flex; justify-content: center; gap: clamp(6px, 5vw, 68px); }
+    .dock a { display: grid; place-items: center; align-content: center; min-width: 60px; min-height: 45px; gap: 3px; color: #a6a3b1; font-size: 11px; }
+    .dock a[aria-current="page"], .dock a:hover { color: var(--violet); }
+    @media (max-width: 680px) {
+      .wrap { width: calc(100% - 32px); }
+      .topbar .wrap { min-height: 62px; }
+      .hero { padding: 30px 0 20px; }
+      .hero-content, .records { grid-template-columns: 1fr; gap: 13px; }
+      .share { min-height: 132px; padding: 16px; }
+      .hero-links { margin: 16px 0 7px; }
+      .records { margin-top: 7px; }
+      .panel { padding: 17px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="mark" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9" transform="rotate(42 12 12)"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="home-icon" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zm6 11v-8h6v8"/></symbol>
+    <symbol id="round-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="rules-icon" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zm9 0v5h4M9 12h7m-7 4h7"/></symbol>
+    <symbol id="heart-icon" viewBox="0 0 24 24"><path d="M20.8 8.6c0 4.6-8.8 10-8.8 10s-8.8-5.4-8.8-10c0-2.3 1.8-4.1 4.1-4.1 2 0 3.8 1.3 4.7 2.8.9-1.5 2.7-2.8 4.7-2.8 2.3 0 4.1 1.8 4.1 4.1Z"/></symbol>
+    <symbol id="box-icon" viewBox="0 0 24 24"><path d="m3.5 7.5 8.5-4 8.5 4v9L12 21l-8.5-4.5Zm0 0L12 12l8.5-4.5M12 12v9M8.2 5.4l8.6 4.4"/></symbol>
+  </svg>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="./index.html" aria-label="曜时首页">
+        <svg width="29" height="29" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#mark"/></svg>
+        <span>曜时<small>ORBIT DRAW</small></span>
+      </a>
+      <span class="badge">积分演示 · 无现金价值</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="title">
+      <div class="wrap hero-content">
+        <div>
+          <div class="kicker">GIVING / TRANSPARENCY</div>
+          <h1 id="title">捐款公示</h1>
+          <p class="description">用于帮助生活困难儿童的捐款与物资交付，将在这里按笔公开凭证与记录。</p>
+          <div class="hero-links">
+            <a class="pill primary" href="#donations">查看捐款凭证</a>
+            <a class="pill" href="#supplies">查看物资记录</a>
+          </div>
+        </div>
+        <div class="share">
+          <span class="kicker">DONATION SHARE</span>
+          <strong>50%</strong>
+          <p>每日参与总额的捐款份额（演示规则）</p>
+        </div>
+      </div>
+    </section>
+    <div class="wrap">
+      <div class="records">
+        <section class="panel" id="donations" aria-labelledby="donations-title">
+          <div class="panel-head">
+            <div class="panel-title">
+              <svg width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><use href="#rules-icon"/></svg>
+              <h2 id="donations-title">捐款凭证</h2>
+            </div>
+            <span class="count" id="donation-count">0 笔</span>
+          </div>
+          <div id="donation-list">
+            <div class="empty">
+              <p>暂无捐款凭证</p>
+              <p>完成捐款并取得收据后，会在这里公布本笔记录。</p>
+              <ul class="fields" aria-label="公示字段"><li>捐款日期</li><li>受赠机构或项目</li><li>实际捐出金额</li><li>收据或转账凭证</li></ul>
+            </div>
+          </div>
+        </section>
+        <section class="panel" id="supplies" aria-labelledby="supplies-title">
+          <div class="panel-head">
+            <div class="panel-title">
+              <svg width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><use href="#box-icon"/></svg>
+              <h2 id="supplies-title">物资交付</h2>
+            </div>
+            <span class="count" id="supplies-count">0 批</span>
+          </div>
+          <div id="supplies-list">
+            <div class="empty">
+              <p>暂无物资交付记录</p>
+              <p>物资送达后，会在这里公布交付清单和照片。</p>
+              <ul class="fields" aria-label="公示字段"><li>交付日期</li><li>签收机构或项目</li><li>物资品类与数量</li><li>交付照片</li></ul>
+            </div>
+          </div>
+        </section>
+      </div>
+      <p class="privacy">公示照片聚焦物资与交接现场。发布前会遮挡儿童面孔、住址、联系方式等识别信息。</p>
+    </div>
+  </main>
+
+  <div class="dock">
+    <nav aria-label="页面导航">
+      <a href="./index.html"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><use href="#home-icon"/></svg>首页</a>
+      <a href="./index.html#round"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><use href="#round-icon"/></svg>本期抽奖</a>
+      <a href="./index.html#rules"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><use href="#rules-icon"/></svg>参与规则</a>
+      <a href="./donation.html" aria-current="page"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><use href="#heart-icon"/></svg>捐款公示</a>
+    </nav>
+  </div>
+  <!--
+    Add completed public records to evidence-data.
+    Donations require date, beneficiary, amount and receiptUrl.
+    Supplies require date, beneficiary, items and photos (array of {url, alt}).
+    Use redacted local files or HTTPS evidence URLs. The supplied files are published as provided.
+  -->
+  <script id="evidence-data" type="application/json">
+    { "donations": [], "supplies": [] }
+  </script>
+  <script>
+    const evidence = JSON.parse(document.getElementById("evidence-data").textContent);
+
+    function evidenceUrl(value) {
+      if (typeof value !== "string" || value.trim() === "") return null;
+      try {
+        const url = new URL(value, document.baseURI);
+        if (url.protocol === "https:") return url.href;
+        const isRelative = !/^(?:[a-z][a-z\d+.-]*:|[\/\\]{2})/i.test(value.trim());
+        if (isRelative && url.origin === location.origin) return url.href;
+      } catch {
+        return null;
+      }
+      return null;
+    }
+
+    function makeRecord(date, beneficiary, label, detail) {
+      const article = document.createElement("article");
+      article.className = "record";
+      const heading = document.createElement("h3");
+      heading.textContent = beneficiary;
+      const fields = document.createElement("dl");
+      for (const [name, value] of [["日期", date], [label, detail]]) {
+        const term = document.createElement("dt");
+        term.textContent = name;
+        const description = document.createElement("dd");
+        description.textContent = value;
+        fields.append(term, description);
+      }
+      article.append(heading, fields);
+      return article;
+    }
+
+    function makeEvidenceLink(url, label) {
+      const link = document.createElement("a");
+      link.href = url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = label;
+      return link;
+    }
+
+    function renderList(records, listId, countId, unit) {
+      if (!records.length) return;
+      document.getElementById(listId).replaceChildren(...records);
+      document.getElementById(countId).textContent = `${records.length} ${unit}`;
+    }
+
+    const donationRecords = [];
+    for (const { date, beneficiary, amount, receiptUrl } of evidence.donations) {
+      const receipt = evidenceUrl(receiptUrl);
+      if (!date || !beneficiary || !amount || !receipt) continue;
+      const article = makeRecord(date, beneficiary, "捐出金额", amount);
+      article.append(makeEvidenceLink(receipt, "打开捐款凭证"));
+      donationRecords.push(article);
+    }
+    renderList(donationRecords, "donation-list", "donation-count", "笔");
+
+    const supplyRecords = [];
+    for (const { date, beneficiary, items, photos } of evidence.supplies) {
+      if (!date || !beneficiary || !items || !Array.isArray(photos)) continue;
+      const gallery = document.createElement("div");
+      gallery.className = "photos";
+      for (const { url, alt } of photos) {
+        const imageUrl = evidenceUrl(url);
+        if (!imageUrl) continue;
+        const image = document.createElement("img");
+        image.src = imageUrl;
+        image.alt = alt || "物资交付照片";
+        image.loading = "lazy";
+        image.referrerPolicy = "no-referrer";
+        const link = makeEvidenceLink(imageUrl, "");
+        link.append(image);
+        gallery.append(link);
+      }
+      if (!gallery.childElementCount) continue;
+      const article = makeRecord(date, beneficiary, "交付物资", items);
+      article.append(gallery);
+      supplyRecords.push(article);
+    }
+    renderList(supplyRecords, "supplies-list", "supplies-count", "批");
+  </script>
+</body>
+</html>
